@@ -11,7 +11,17 @@ import UIKit
 @objc(Target_A)
 class Target_A: NSObject {
 
+    @objc
     func Action_viewController(params:NSDictionary) -> UIViewController {
+        
+        let block = params["callback"]
+        typealias CallbackType = @convention(block) (NSString) -> Void
+        
+        let blockPtr = UnsafeRawPointer(Unmanaged<AnyObject>.passUnretained(block as AnyObject).toOpaque())
+        let callback = unsafeBitCast(blockPtr, to: CallbackType.self)
+        
+        callback("success")
+        
         let aViewController = ViewController()
         return aViewController
     }
