@@ -8,11 +8,9 @@
 
 import UIKit
 
-@objc(Target_A)
-class Target_A: NSObject {
+@objc class Target_A: NSObject {
 
-    @objc
-    func Action_viewController(params:NSDictionary) -> UIViewController {
+    @objc func Action_viewController(_ params:NSDictionary) -> UIViewController {
         
         let block = params["callback"]
         typealias CallbackType = @convention(block) (NSString) -> Void
