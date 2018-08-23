@@ -11,17 +11,22 @@ import UIKit
 @objc class Target_A: NSObject {
 
     @objc func Action_viewController(_ params:NSDictionary) -> UIViewController {
-        
-        let block = params["callback"]
-        typealias CallbackType = @convention(block) (NSString) -> Void
-        
-        let blockPtr = UnsafeRawPointer(Unmanaged<AnyObject>.passUnretained(block as AnyObject).toOpaque())
-        let callback = unsafeBitCast(blockPtr, to: CallbackType.self)
-        
-        callback("success")
-        
+
+        // from category
+//        let block = params["callback"]
+//        typealias CallbackType = @convention(block) (NSString) -> Void
+//
+//        let blockPtr = UnsafeRawPointer(Unmanaged<AnyObject>.passUnretained(block as AnyObject).toOpaque())
+//        let callback = unsafeBitCast(blockPtr, to: CallbackType.self)
+//
+//        callback("success")
+
+        // from extension
+        if let callback = params["callback"] as? (String) -> Void {
+            callback("success")
+        }
+
         let aViewController = ViewController()
         return aViewController
     }
-
 }
