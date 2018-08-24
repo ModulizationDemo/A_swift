@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "A_swift"
-  s.version      = "8"
-  spec.swift_version = '4.2'
+  s.version      = "9"
+  s.swift_version= '4.2'
   s.summary      = "A_swift."
 
   # This description is used to generate tags and improve search results.
